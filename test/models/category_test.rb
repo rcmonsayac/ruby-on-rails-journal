@@ -5,9 +5,7 @@ class CategoryTest < ActiveSupport::TestCase
     category  = Category.new
     assert_not category.save
   end
-end
 
-class CategoryTest < ActiveSupport::TestCase
   test "Category name should be unique" do
     original  = Category.new(name: "original name")
     duplicate  = Category.new(name: "original name")
@@ -16,3 +14,4 @@ class CategoryTest < ActiveSupport::TestCase
     assert_not duplicate.save
   end
 end
+

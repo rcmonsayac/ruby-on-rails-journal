@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   description: MyString
+
+test_category:
+  name: Name Category Test
+  description: Description Category Test
