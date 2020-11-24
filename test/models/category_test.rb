@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
+
+  test "Category should save " do
+    category  = Category.new(name: "test name", description: "test description")
+    assert category.save
+  end
+
   test "Category should not save without name" do
     category  = Category.new
     assert_not category.save
