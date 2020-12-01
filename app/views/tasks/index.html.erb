@@ -1,0 +1,24 @@
+<h1 class="name">Tasks</h1>
+
+<div class="section">
+    <div class="tasks-list">
+        <div>
+            <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
+        </div>
+
+        <% @tasks.each do |task| %>
+            <div class="list-task-item">
+                <span><%= task.title %></span>
+                <span><%= task.description %></span>
+                <span><%= task.category.name </span>
+                <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+
+
+
+
+
