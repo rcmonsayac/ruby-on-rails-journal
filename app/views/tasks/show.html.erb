@@ -1,0 +1,24 @@
+<h2>
+  <%= @task.title %> (<%= link_to @task.category.name, show_category_path(@task.category_id) %>)
+</h2>
+<p>
+  <%= @task.description %>
+</p>
+<% if @task.deadline %>
+    <p>
+    Deadline: <%= @task.deadline %>
+    </p>
+<% end %>
+<% if @task.started %>
+    <p>
+    Task started at <%= @task.started_at %>
+    </p>
+<% end %>
+<% if @task.completed %>
+    <p>
+    Task completed at <%= @task.completed_at %>
+    </p>
+<% end %>
+
+<%= link_to "Edit", edit_task_path(@task.id) %>
+<%= link_to "Back to Tasks", tasks_path %>

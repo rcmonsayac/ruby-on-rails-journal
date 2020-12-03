@@ -1,0 +1,33 @@
+<%= form_with scope: :task, url: create_task_path, local: true do |f| %>
+  <p>
+    <% if @task.errors.any? %>
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>     
+  </p>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :deadline %>
+    <%= f.datetime_field :deadline %>
+  </p>
+  <p>
+    <%= f.label :category_id, "Category" %>
+    <%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
+  </p>
+  <p>
+    <%= f.submit 'Create', class: 'button' %>
+    <%=  link_to 'Cancel', tasks_path, method: :get, class: 'button' %>
+  </p>
+  <% end %>

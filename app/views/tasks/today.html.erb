@@ -1,10 +1,10 @@
-<h1 class="name">Tasks</h1>
+<h1 class="name">Tasks Today</h1>
 
 <div class="section">
     <div class="tasks-list">
         <div>
             <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
-            <%= link_to 'Tasks Today', today_task_path, method: :get, class: 'button'%>
+            <%= link_to 'All Tasks', tasks_path, method: :get, class: 'button'%>
         </div>
         <% if @started_tasks.any? %>
             <h3>
@@ -12,7 +12,7 @@
             </h3>
             <% @started_tasks.each do |task| %>
                 <div class="list-task-item">
-                    <span><%= link_to task.title, show_task_path(task.id), method: :get %></span>
+                    <span><%= task.title %></span>
                     <span><%= task.description %></span>
                     <span><%= task.category.name %></span>
                     <span>Completed at <%= task.started_at %></span> 

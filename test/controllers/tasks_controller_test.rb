@@ -29,7 +29,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should start task" do
     started_date = Time.now
-    put update_task_path, params: { task: { id: @task.id, started: true, started: started_date } }
+    put update_task_path, params: { task: { id: @task.id, started: true, started_at: started_date } }
     assert_redirected_to tasks_path
 
     started_task = Task.find(@task.id)
@@ -49,7 +49,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should delete task" do
-    delete delete_category_path(@task.id)
+    delete delete_task_path(@task.id)
     assert_redirected_to tasks_path
 
     assert_nil Task.find_by(id: @task.id)
