@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   put '/categories/update' => 'categories#update', as: 'update_category'
   delete '/categories/delete/:id' => 'categories#delete', as: 'delete_category'
 
-
+  root 'tasks#today'
   get '/tasks' => 'tasks#index'
   get '/tasks/today' => 'tasks#today', as: 'today_task'
   get '/tasks/new' => 'tasks#new', as: 'new_task'

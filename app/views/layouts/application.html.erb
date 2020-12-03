@@ -10,6 +10,29 @@
   </head>
 
   <body>
-    <%= yield %>
+      <div class="container">
+        <header>
+          <h2>Journal Plannner</h2>
+            <ul class="nav-links">
+              <% if params[:controller] == 'tasks' && %w(index new edit show today).include?(params[:action]) %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to 'Tasks', tasks_path %>
+              </li>
+              <% if params[:controller] == 'categories' && %w(index new edit show).include?(params[:action]) %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to 'Categories', categories_path %>
+              </li>
+            </ul>
+        </header>
+        <main>
+            <%= yield %>
+        </main> 
+      </div>
   </body>
 </html>

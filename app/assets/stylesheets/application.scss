@@ -1,0 +1,106 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+ $font-stack: Roboto, Helvetica, sans-serif;
+ $primary-color: #293641;
+ $secondary-color: #e7e7e7;
+ 
+
+
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: $font-stack;
+ }
+
+ body {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .container {
+    margin: 50px 0px;
+    width: 750px;
+    min-height: 600px;
+    border-radius: 10px;
+    background-color: #e7e7e7;
+}
+
+
+
+header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: $primary-color;
+    // padding: 10px;
+    color: $secondary-color;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    h2 {
+        margin-bottom: 14px;
+        padding: 15px 0px 0px 10px;
+    }
+    ul {
+      padding: 0;
+      display: flex;
+      list-style: none;
+      li {
+        display: inline-block;
+        text-align: center;
+        padding: 5px 7px;
+        width: 100px;
+        position: relative;
+        &.active, &:hover {
+            background-color: #e7e7e7;
+            a {
+                color: #212529;
+                font-weight: 700;
+            }
+            // &:after {
+            //     width: 0;
+            //     height: 0;
+            //     border-left: 5px solid transparent;
+            //     border-right: 5px solid transparent;
+            //     border-top: 5px solid #e5e5e5;
+            //     content: " ";
+            //     position: absolute;
+            //     bottom: -5px;
+            //     left: 45px;
+            //   }
+        }
+        a {
+            color: #e7e7e7;;
+            text-decoration: none;
+        }
+      }
+    }
+  }
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #293641;
+    box-sizing: border-box;
+    height: 60px;
+    padding: 10px 40px;
+}
