@@ -23,7 +23,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    
     get edit_category_path(@category.id)
     assert_response :success
   end

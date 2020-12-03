@@ -4,8 +4,22 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# one: {}
+# # column: value
+# #
+# two: {}
+# # column: value
+
+test_task:
+  title: test task
+  description: test description
+  deadline: "2020-12-01 14:00:00"
+  category_id: 321852057
+
+test_task_started:
+  title: task_started
+  description: test description
+  started: true
+  started_at:  <%= Time.now %>
+  deadline: "2020-12-10 14:00:00"
+  category_id: 321852057

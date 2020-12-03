@@ -10,7 +10,7 @@
             <div class="list-task-item">
                 <span><%= task.title %></span>
                 <span><%= task.description %></span>
-                <span><%= task.category.name </span>
+                <%# <span><%= task.category.name %></span>  %>
                 <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
             </div>
         <% end %>

@@ -6,7 +6,7 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test "should create new Task" do
-    task = Task.new(title: "test title", category_id: @category.id)
+    task = Task.new(title: "test title", category_id: @category.id, deadline: Time.new(2020, 12, 31))
     assert task.save
   end
 
