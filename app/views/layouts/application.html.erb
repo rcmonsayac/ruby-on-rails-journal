@@ -14,12 +14,18 @@
         <header>
           <h2>Journal Plannner</h2>
             <ul class="nav-links">
+              <% if params[:controller] == 'home' && %w(today).include?(params[:action]) %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to 'Home', root_path %>
               <% if params[:controller] == 'tasks' && %w(index new edit show today).include?(params[:action]) %>
                 <li class="active">
               <% else %>
                 <li>
               <% end %>
-                <%= link_to 'Tasks', tasks_path %>
+                <%= link_to 'Tasks', category_tasks_path(Category.first.id) %>
               </li>
               <% if params[:controller] == 'categories' && %w(index new edit show).include?(params[:action]) %>
                 <li class="active">

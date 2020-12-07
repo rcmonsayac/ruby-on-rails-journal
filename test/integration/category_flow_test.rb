@@ -13,7 +13,7 @@ class CategoryFlowTest < ActionDispatch::IntegrationTest
         get new_category_path
         assert_response :success
 
-        post create_category_path, params: { category: { name: "create integ name test", description: "create integ description test" } }
+        post categories_path, params: { category: { name: "create integ name test", description: "create integ description test" } }
         assert_redirected_to categories_path
 
         follow_redirect!
@@ -35,7 +35,7 @@ class CategoryFlowTest < ActionDispatch::IntegrationTest
         assert_select "form input[type=text][value='#{@category.name}']"
         assert_select "form input[type=text][value='#{@category.description}']"
 
-        put update_category_path, params: { category: { id: @category.id, name: "update integ name test", description: "update integ description test" } }
+        put category_path(@category.id), params: { category: {name: "update integ name test", description: "update integ description test" } }
         assert_redirected_to categories_path
 
         follow_redirect!
@@ -61,7 +61,7 @@ class CategoryFlowTest < ActionDispatch::IntegrationTest
         assert_select "form input[type=text][value='#{@category.name}']"
         assert_select "form input[type=text][value='#{@category.description}']"
 
-        delete delete_category_path(@category.id)
+        delete category_path(@category.id)
         assert_redirected_to categories_path
 
         follow_redirect!

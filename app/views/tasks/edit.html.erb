@@ -1,4 +1,5 @@
-<%= form_with scope: :task, url: update_task_path, local: true, method: :put do |f|  %>
+
+<%= form_with model: [@category, @task], local: true, method: :put do |f|  %>
   <p>
     <% if @task.errors.any?  %>
       <ul>
@@ -34,12 +35,8 @@
     <%= f.datetime_field :completed_at %>
   </p>
   <p>
-    <%= f.label :category_id, "Category" %>
-    <%= f.select :category_id, Category.all.collect { |c| [ c.name, c.id ] } %>
-  </p>
-  <p>
     <%= f.submit 'Save', class: 'button' %>
-    <%=  link_to 'Delete', delete_task_path(@task.id), method: :delete, class: 'button', data: {confirm: "Are you sure you want to delete this task?"} %>
-    <%=  link_to 'Cancel', tasks_path, method: :get, class: 'button' %>
+    <%=  link_to 'Delete', category_task_path(@category.id, @task.id), method: :delete, class: 'button', data: {confirm: "Are you sure you want to delete this task?"} %>
+    <%=  link_to 'Cancel', category_tasks_path(@category.id), method: :get, class: 'button' %>
   </p>
 <% end %>

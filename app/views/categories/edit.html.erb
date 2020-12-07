@@ -1,6 +1,5 @@
-<h1 class="name">Categories > Edit</h1>
 <div class="section">
-    <%= form_with scope: :category, url: update_category_path, local: true, method: :put do |f|  %>
+    <%= form_with model: [@category], local: true, method: :put do |f|  %>
         <div class="validations">
             <% if @category.errors.any?  %>
                     <% @category.errors.full_messages.each do |message| %>
@@ -22,7 +21,7 @@
 
         <div class="form-group">
             <%= f.submit 'Save', class: 'button' %>
-            <%=  link_to 'Delete', delete_category_path(@category.id), method: :delete, class: 'button', data: {confirm: "Are you sure you want to delete this category?"} %>
+            <%=  link_to 'Delete', category_path(@category.id), method: :delete, class: 'button', data: {confirm: "Are you sure you want to delete this category?"} %>
             <%=  link_to 'Cancel', categories_path, method: :get, class: 'button' %>
         </div>
     <% end %>

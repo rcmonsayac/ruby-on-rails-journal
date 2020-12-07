@@ -1,48 +1,45 @@
-<h3>Tasks</h3>
+<h2>Tasks - <%= @category.name %></h2>
 <div class="section">
     <div class="tasks-list">
         <div>
-            <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
-            <%= link_to 'Tasks Today', today_task_path, method: :get, class: 'button'%>
+            <%= link_to '+ New Task', new_category_task_path(@category.id), method: :get, class: 'button' %>
+            
         </div>
         <% if @started_tasks.any? %>
             <h3>
-                Started Tasks
+                Started
             </h3>
             <% @started_tasks.each do |task| %>
                 <div class="list-task-item">
-                    <span><%= link_to task.title, show_task_path(task.id), method: :get %></span>
+                    <span><%= link_to task.title, category_task_path(@category.id, task.id), method: :get %></span>
                     <span><%= task.description %></span>
-                    <span><%= task.category.name %></span>
-                    <span>Completed at <%= task.started_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span>Started at <%= task.started_at %></span> 
+                    <span><%= link_to 'Edit', edit_category_task_path(@category.id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %> 
         <% if @pending_tasks.any? %>
             <h3>
-                Pending Tasks
+                Pending
             </h3>
             <% @pending_tasks.each do |task| %>
                 <div class="list-task-item">
-                    <span><%= task.title %></span>
+                    <span><%= link_to task.title, category_task_path(@category.id, task.id), method: :get %></span>
                     <span><%= task.description %></span>
-                    <span><%= task.category.name %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span><%= link_to 'Edit', edit_category_task_path(@category.id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %>
         <% if @completed_tasks.any? %>
             <h3>
-                Completed Tasks
+                Completed
             </h3>
             <% @completed_tasks.each do |task| %>
                 <div class="list-task-item">
-                    <span><%= task.title %></span>
+                    <span><%= link_to task.title, category_task_path(@category.id, task.id), method: :get %></span>
                     <span><%= task.description %></span>
-                    <span><%= task.category.name %></span>
                     <span>Completed at <%= task.completed_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span><%= link_to 'Edit', edit_category_task_path(@category.id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %>

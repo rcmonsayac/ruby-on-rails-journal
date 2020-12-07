@@ -3,8 +3,8 @@
 <div class="section">
     <div class="tasks-list">
         <div>
-            <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
-            <%= link_to 'All Tasks', tasks_path, method: :get, class: 'button'%>
+            <%# <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
+            <%# <%= link_to 'All Tasks', tasks_path, method: :get, class: 'button'%>
         </div>
         <% if @started_tasks.any? %>
             <h3>
@@ -15,8 +15,8 @@
                     <span><%= task.title %></span>
                     <span><%= task.description %></span>
                     <span><%= task.category.name %></span>
-                    <span>Completed at <%= task.started_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span>Started at <%= task.started_at %></span> 
+                    <span><%= link_to 'Edit', edit_category_task_path(task.category_id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %> 
@@ -29,7 +29,7 @@
                     <span><%= task.title %></span>
                     <span><%= task.description %></span>
                     <span><%= task.category.name %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span><%= link_to 'Edit', edit_category_task_path(task.category_id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %>
@@ -43,7 +43,7 @@
                     <span><%= task.description %></span>
                     <span><%= task.category.name %></span>
                     <span>Completed at <%= task.completed_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
+                    <span><%= link_to 'Edit', edit_category_task_path(task.category_id, task.id), method: :get, class: 'button' %></span>
                 </div>
             <% end %>
         <% end %>

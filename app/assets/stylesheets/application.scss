@@ -13,9 +13,9 @@
  *= require_tree .
  *= require_self
  */
- @import url('https://fonts.googleapis.com/css?family=Roboto');
+ @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
- $font-stack: Roboto, Helvetica, sans-serif;
+ $font-stack: Montserrat, Helvetica, sans-serif;
  $primary-color: #293641;
  $secondary-color: #e7e7e7;
  
@@ -104,3 +104,4 @@ header {
     height: 60px;
     padding: 10px 40px;
 }
+

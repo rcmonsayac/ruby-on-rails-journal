@@ -4,13 +4,9 @@
 <p>
   <%= @category.description %>
 </p>
+<%= link_to "+New #{@category.name} Task", new_category_task_path(@category.id), method: :get, class: 'button' %>
+<%=  link_to "All #{@category.name} Task", category_tasks_path(@category.id), method: :get, class: 'button' %>
 
-<h3>Tasks</h3>
-<ul>
-<% @tasks.each do |task| %>
-  <li><%= link_to task.title, show_task_path(task.id) %></li>
-<% end %>
-</ul>
 
 <%= link_to 'Edit', edit_category_path(@category.id) %>
 <%= link_to 'Back to Categories', categories_path %>

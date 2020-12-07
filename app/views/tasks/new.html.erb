@@ -1,4 +1,6 @@
-<%= form_with scope: :task, url: create_task_path, local: true do |f| %>
+
+<h4>Create new - <%= @category.name %> Task</h4>
+<%= form_with model: [@category, @task], local: true, method: :post do |f|  %>
   <p>
     <% if @task.errors.any? %>
       <ul>
@@ -23,11 +25,7 @@
     <%= f.datetime_field :deadline %>
   </p>
   <p>
-    <%= f.label :category_id, "Category" %>
-    <%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
-  </p>
-  <p>
     <%= f.submit 'Create', class: 'button' %>
-    <%=  link_to 'Cancel', tasks_path, method: :get, class: 'button' %>
+    <%=  link_to 'Cancel', category_tasks_path(@category.id), method: :get, class: 'button' %>
   </p>
   <% end %>

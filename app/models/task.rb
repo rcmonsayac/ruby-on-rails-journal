@@ -3,4 +3,5 @@ class Task < ApplicationRecord
                      uniqueness: true
     # validates :deadline, datetime: true
     belongs_to :category
+    belongs_to :user
 end

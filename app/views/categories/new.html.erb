@@ -1,5 +1,5 @@
 <div class="section">
-    <%= form_with scope: :category, url: create_category_path, local: true do |f|  %>
+    <%= form_with model: [@category], local: true, method: :post do |f|  %>
         <div class="validations">
             <% if @category.errors.any?  %>
                     <% @category.errors.full_messages.each do |message| %>
