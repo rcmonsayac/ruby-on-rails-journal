@@ -1,15 +1,15 @@
 class TasksController < ApplicationController
-
+    before_action :authenticate_user!
     def index
-        @started_tasks = Task.where(completed: false, started: true).order(deadline: :asc)
-        @completed_tasks = Task.where(completed: true).order(completed: :desc)
-        @pending_tasks = Task.where(completed: false, started: false).order(deadline: :asc)
+        @started_tasks = Task.where(completed: false, started: true, user_id: current_user.id).order(deadline: :asc)
+        @completed_tasks = Task.where(completed: true, user_id: current_user.id).order(completed: :desc)
+        @pending_tasks = Task.where(completed: false, started: false, user_id: current_user.id).order(deadline: :asc)
     end
 
     def today
-        @started_tasks = Task.where(completed: false, started: true, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :asc)
-        @completed_tasks = Task.where(completed: true, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :desc)
-        @pending_tasks = Task.where(completed: false, started: false, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :asc)
+        @started_tasks = Task.where(user_id: current_user.id, completed: false, started: true, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :asc)
+        @completed_tasks = Task.where(user_id: current_user.id, completed: true, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :desc)
+        @pending_tasks = Task.where(user_id: current_user.id, completed: false, started: false, deadline: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(deadline: :asc)
     end
 
     def show
@@ -22,6 +22,7 @@ class TasksController < ApplicationController
 
     def create
         @task = Task.new(task_params)
+        @task.user_id = current_user.id
         if @task.save
             redirect_to tasks_path
         else
@@ -30,11 +31,11 @@ class TasksController < ApplicationController
     end
 
     def edit
-        @task = Task.find(params[:id])        
+        @task = Task.find_by(id: params[:id], user_id: current_user.id)        
     end
 
     def update
-        @task = Task.find(params[:task][:id])  
+        @task = Task.find_by(id: params[:task][:id])  
         if @task.update(task_params)
             redirect_to tasks_path
         else

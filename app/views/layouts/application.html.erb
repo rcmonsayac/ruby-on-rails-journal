@@ -12,23 +12,43 @@
   <body>
       <div class="container">
         <header>
+        <div>
           <h2>Journal Plannner</h2>
-            <ul class="nav-links">
-              <% if params[:controller] == 'tasks' && %w(index new edit show today).include?(params[:action]) %>
-                <li class="active">
-              <% else %>
-                <li>
-              <% end %>
-                <%= link_to 'Tasks', tasks_path %>
-              </li>
-              <% if params[:controller] == 'categories' && %w(index new edit show).include?(params[:action]) %>
-                <li class="active">
-              <% else %>
-                <li>
-              <% end %>
-                <%= link_to 'Categories', categories_path %>
-              </li>
+        <% if user_signed_in? %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "logout", data: {confirm: "Are you sure you want to logout?"} %>
+        </div>
+            <div>
+              <ul>
+                <% if params[:controller] == 'tasks' %>
+                  <li class="active">
+                <% else %>
+                  <li>
+                <% end %>
+                  <%= link_to 'Tasks', tasks_path %>
+                </li>
+                <% if params[:controller] == 'categories' %>
+                  <li class="active">
+                <% else %>
+                  <li>
+                <% end %>
+                  <%= link_to 'Categories', categories_path %>
+                </li>
+              </ul>
+              <ul>
+              </ul>
+            </div>
+          <% else %>
+            <% if params[:controller] != 'devise/registrations' %>
+              <%= link_to 'Register', new_user_registration_path, class: "register" %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "register" %>
+            <% end %>
+          </div>
+          <div>
+            <ul>
             </ul>
+          </div>
+          <% end %>
         </header>
         <main>
             <%= yield %>

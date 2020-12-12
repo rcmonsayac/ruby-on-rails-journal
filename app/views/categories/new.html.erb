@@ -1,27 +1,25 @@
-<div class="section">
-    <%= form_with scope: :category, url: create_category_path, local: true do |f|  %>
-        <div class="validations">
-            <% if @category.errors.any?  %>
-                    <% @category.errors.full_messages.each do |message| %>
-                        <div>
-                            <%= message %>
-                        </div>
-                    <% end %>
-            <% end %>     
-        </div>
-        <div class="form-group">
-            <%= f.label :name, class: 'form-label' %>
-            <%= f.text_field :name, class: 'text-input' %>
-        </div>
-        <div class="form-group">
-            <%= f.label :description, class: 'form-label' %>
-            <%= f.text_field :description, class: 'text-area' %>
-        </div>
+<h2>Categories > Create</h2>
+<%= form_with scope: :category, url: create_category_path, local: true do |f|  %>
+    <div class="validations">
+        <% if @category.errors.any?  %>
+                <% @category.errors.full_messages.each do |message| %>
+                    <div>
+                        <%= message %>
+                    </div>
+                <% end %>
+        <% end %>     
+    </div>
+    <div class="form-group">
+        <%= f.label :name, class: 'form-label' %>
+        <%= f.text_field :name, class: 'text-input' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :description, class: 'form-label' %>
+        <%= f.text_field :description, class: 'text-area' %>
+    </div>
 
-        <div class="form-group">
-            <%= f.submit 'Create', class: 'button' %>
-            <%=  link_to 'Cancel', categories_path, method: :get, class: 'button' %>
-        </div>
-    <% end %>
-</div>
-
+    <div class="form-group">
+        <%= f.submit 'Create', class: 'button' %>
+        <%=  link_to 'Cancel', categories_path, method: :get, class: 'button' %>
+    </div>
+<% end %>

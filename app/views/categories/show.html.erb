@@ -1,16 +1,8 @@
 <h2>
-  <%= @category.name %>
+  Categories > <%= @category.name %>
 </h2>
 <p>
   <%= @category.description %>
 </p>
-
-<h3>Tasks</h3>
-<ul>
-<% @tasks.each do |task| %>
-  <li><%= link_to task.title, show_task_path(task.id) %></li>
-<% end %>
-</ul>
-
 <%= link_to 'Edit', edit_category_path(@category.id) %>
 <%= link_to 'Back to Categories', categories_path %>

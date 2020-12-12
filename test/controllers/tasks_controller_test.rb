@@ -3,7 +3,15 @@ require 'test_helper'
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = categories(:test_category)
-    @task = tasks(:test_task)
+    @user = users(:test_user)
+    sign_in(@user)
+    @task = Task.new
+    @task.title = "test task",
+    @task.description = "test description",
+    @task.deadline ="2020-12-01 14:00:00",
+    @task.category_id = @category.id,
+    @task.user_id = @user.id
+    @task.save
   end
 
   test "should get task index view" do
@@ -29,7 +37,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should start task" do
     started_date = Time.now
-    put update_task_path, params: { task: { id: @task.id, started: true, started_at: started_date } }
+    put update_task_path, params: { task: { id: @task.id,  started: true, started_at: started_date } }
     assert_redirected_to tasks_path
 
     started_task = Task.find(@task.id)
@@ -38,7 +46,15 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should complete task" do
-    started_task = tasks(:test_task_started)
+    started_task = Task.new
+    started_task.title = "task_started",
+    started_task.description ="test description",
+    started_task.started = true,
+    started_task.started_at = Time.now,
+    started_task.category_id =  @category.id,
+    started_task.user_id =  @user.id
+    started_task.save
+
     completed_date = Time.now
     put update_task_path, params: { task: { id: started_task.id, completed: true, completed_at: completed_date } }
     assert_redirected_to tasks_path
@@ -51,7 +67,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "should delete task" do
     delete delete_task_path(@task.id)
     assert_redirected_to tasks_path
-
     assert_nil Task.find_by(id: @task.id)
   end
   

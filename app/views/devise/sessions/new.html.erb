@@ -1,0 +1,34 @@
+<h2>Log in</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "login"}) do |f| %>
+  <div class="validations">
+    <ul>
+      <li><%= flash[:alert]%> </li>
+    </ul>
+  </div>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", required: true %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="check-field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: "login" %>
+  </div>
+
+<% end %>
+
+<p>
+Or create an account  <%= link_to 'here.', new_user_registration_path %>
+</p>
+
+
+

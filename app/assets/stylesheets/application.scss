@@ -13,94 +13,316 @@
  *= require_tree .
  *= require_self
  */
- @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
- $font-stack: Roboto, Helvetica, sans-serif;
- $primary-color: #293641;
- $secondary-color: #e7e7e7;
- 
+$font-stack: Montserrat, Helvetica, sans-serif;
+$primary-color: #153e90;
+$secondary-color: #07689f;
 
-
-
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     font-family: $font-stack;
- }
-
- body {
-     display: flex;
-     align-items: center;
-     justify-content: center;
- }
-
- .container {
-    margin: 50px 0px;
-    width: 750px;
-    min-height: 600px;
-    border-radius: 10px;
-    background-color: #e7e7e7;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-stack;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4a69bb;
+}
 
+.container {
+  margin: 50px 0px;
+  width: 600px;
+  min-height: 600px;
+  border-radius: 10px;
+  background-color: #e7e7e7;
+  box-shadow: 0px 0px 7px #000000;
+}
 
 header {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: $primary-color;
-    // padding: 10px;
-    color: $secondary-color;
-    height: 80px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: $primary-color;
+  color: #ffffff;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  div {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
     h2 {
-        margin-bottom: 14px;
-        padding: 15px 0px 0px 10px;
+      padding: 15px 10px;
     }
+    & .logout,
+    .register {
+      margin: 18px 10px;
+      display: block;
+      padding: 7px 9px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0f3057;
+      outline: none;
+      border-radius: 3px;
+      border: 3px solid transparent;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    & .register {
+      background-color: #81b214;
+      &:hover {
+        background-color: #207561;
+      }
+    }
+
+    & .logout {
+      background-color: #aaaaaa;
+      &:hover {
+        background-color: #7e7474;
+      }
+    }
+
     ul {
       padding: 0;
       display: flex;
       list-style: none;
+      margin-left: 5px;
       li {
         display: inline-block;
         text-align: center;
-        padding: 5px 7px;
+        padding: 7px 5px;
         width: 100px;
         position: relative;
-        &.active, &:hover {
-            background-color: #e7e7e7;
-            a {
-                color: #212529;
-                font-weight: 700;
-            }
-            // &:after {
-            //     width: 0;
-            //     height: 0;
-            //     border-left: 5px solid transparent;
-            //     border-right: 5px solid transparent;
-            //     border-top: 5px solid #e5e5e5;
-            //     content: " ";
-            //     position: absolute;
-            //     bottom: -5px;
-            //     left: 45px;
-            //   }
-        }
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
         a {
-            color: #e7e7e7;;
-            text-decoration: none;
+          color: #e7e7e7;
+          text-decoration: none;
+        }
+        &.active,
+        &:hover {
+          background-color: #e7e7e7;
+          a {
+            color: #212529;
+            font-weight: 700;
+          }
         }
       }
     }
   }
+}
 
-.navbar {
-    display: flex;
-    align-items: center;
-    background-color: #293641;
-    box-sizing: border-box;
-    height: 60px;
-    padding: 10px 40px;
+main {
+  padding: 10px 15px;
+  h2 {
+    margin-bottom: 5px;
+  }
+  form {
+    font-size: 0.9em;
+    div.field {
+      margin-bottom: 10px;
+      label {
+        margin-bottom: 5px;
+        display: block;
+      }
+      input[type="password"],
+      input[type="email"],
+      input[type="text"],
+      select {
+        display: block;
+        width: 280px;
+        padding: 7px 5px;
+        font-size: 0.9em;
+        box-shadow: 0px 0px 7px #8b8686;
+        border: transparent;
+        border-radius: 3px;
+        outline: none;
+      }
+      label {
+        margin-bottom: 5px;
+      }
+    }
+    div.check-field {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      label {
+        font-size: 0.8em;
+        margin-left: 3px;
+      }
+    }
+
+    div.textarea-field {
+      margin-bottom: 10px;
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      textarea {
+        resize: none;
+        height: 90px;
+        width: 100%;
+        padding: 7px 5px;
+        font-size: 0.9em;
+        box-shadow: 0px 0px 7px #8b8686;
+        border: transparent;
+        border-radius: 3px;
+        outline: none;
+      }
+    }
+
+    div.datefield {
+      margin-bottom: 10px;
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input {
+        padding: 7px 5px;
+        font-size: 0.9em;
+        box-shadow: 0px 0px 7px #8b8686;
+        border: transparent;
+        border-radius: 3px;
+        outline: none;
+      }
+    }
+
+    div.start-complete {
+      display: flex;
+      justify-content: space-between;
+      input {
+        display: block;
+      }
+    }
+
+    div.actions {
+      input[type="submit"].login {
+        width: 280px;
+        height: 35px;
+        padding: 7px 5px;
+        font-size: 0.9em;
+        outline: none;
+        border-radius: 3px;
+        border: transparent;
+        background-color: $primary-color;
+        margin-bottom: 10px;
+        color: #ffffff;
+        &:hover {
+          background-color: #07689f;
+        }
+      }
+      .button {
+        padding: 3px 5px;
+        font-size: 16px;
+        color: #0f3057;
+        outline: none;
+        border-radius: 3px;
+        border: 3px solid transparent;
+        text-decoration: none;
+        font-size: 0.9em;
+        color: #ffffff;
+        background-color: $primary-color;
+        &:hover {
+          background-color: #07689f;
+        }
+      }
+    }
+  }
+  & > p {
+    font-size: 0.8em;
+  }
+
+  div.list {
+    & > div {
+      margin-bottom: 15px;
+      .button {
+        padding: 3px 5px;
+        font-size: 16px;
+        color: #0f3057;
+        outline: none;
+        border-radius: 3px;
+        border: 3px solid transparent;
+        text-decoration: none;
+        font-size: 0.9em;
+        color: #ffffff;
+        background-color: $primary-color;
+        &:hover {
+          background-color: #07689f;
+        }
+      }
+    }
+    & > h3 {
+      margin-bottom: 5px;
+      color: $primary-color;
+      background-color: $primary-color;
+      color: #ffffff;
+      padding: 8px;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .tasks-header + div {
+      transition: width 2s, height 4s;
+    }
+    & > div > .task-list-item {
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3px;
+        height: 30px;
+        p,
+        .button {
+          font-size: 0.9em;
+        }
+        h4 > a {
+          text-decoration: none;
+          font-size: 1.1em;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      & > p {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        -webkit-box-orient: vertical;
+      }
+    }
+    font-size: 0.9em;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.validations {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  min-height: 19px;
+  margin-bottom: 3px;
+  color: #d8000c;
+  // animation: fadeOut 5s forwards;
+  // animation-delay: 1s;
+  ul {
+    list-style: none;
+  }
 }

@@ -15,3 +15,20 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+const addHeaderCollapse = (e) => {
+  let taskHeaders = Array.from(document.querySelectorAll(".tasks-header"))
+  console.log(taskHeaders)
+  taskHeaders.forEach(taskHeader => {
+    let tasksCount = Array.from(taskHeader.nextElementSibling.querySelectorAll(".task-list-item")).length
+    console.log(tasksCount)
+    taskHeader.firstElementChild.innerHTML = taskHeader.firstElementChild.innerHTML + `(${tasksCount})`
+    taskHeader.addEventListener("click", (e) => {
+      taskHeader.innerHTML = taskHeader.innerHTML.includes("-") ?  taskHeader.innerHTML.replace("-", "+") : taskHeader.innerHTML.replace("+", "-")
+      taskHeader.nextElementSibling.classList.toggle("hidden")
+    })
+  })
+}
+
+// window.addEventListener('beforeunload', addHeaderCollapse)
+window.addEventListener('DOMContentLoaded', addHeaderCollapse)

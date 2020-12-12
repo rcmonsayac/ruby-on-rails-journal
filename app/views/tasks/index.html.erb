@@ -1,53 +1,103 @@
-<h3>Tasks</h3>
-<div class="section">
-    <div class="tasks-list">
-        <div>
-            <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
-            <%= link_to 'Tasks Today', today_task_path, method: :get, class: 'button'%>
-        </div>
-        <% if @started_tasks.any? %>
-            <h3>
-                Started Tasks
-            </h3>
-            <% @started_tasks.each do |task| %>
-                <div class="list-task-item">
-                    <span><%= link_to task.title, show_task_path(task.id), method: :get %></span>
-                    <span><%= task.description %></span>
-                    <span><%= task.category.name %></span>
-                    <span>Completed at <%= task.started_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
-                </div>
-            <% end %>
-        <% end %> 
-        <% if @pending_tasks.any? %>
-            <h3>
-                Pending Tasks
-            </h3>
-            <% @pending_tasks.each do |task| %>
-                <div class="list-task-item">
-                    <span><%= task.title %></span>
-                    <span><%= task.description %></span>
-                    <span><%= task.category.name %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
-                </div>
-            <% end %>
-        <% end %>
-        <% if @completed_tasks.any? %>
-            <h3>
-                Completed Tasks
-            </h3>
-            <% @completed_tasks.each do |task| %>
-                <div class="list-task-item">
-                    <span><%= task.title %></span>
-                    <span><%= task.description %></span>
-                    <span><%= task.category.name %></span>
-                    <span>Completed at <%= task.completed_at %></span> 
-                    <span><%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %></span>
-                </div>
-            <% end %>
-        <% end %>
+<h2>Tasks</h2>
+<div class="list">
+    <div>
+        <%= link_to '+ New Task', new_task_path, method: :get, class: 'button'%>
+        <%= link_to 'Tasks Today', today_task_path, method: :get, class: 'button'%>
     </div>
+    <% if @started_tasks.any? %>
+      <h3 class="tasks-header">
+        <span>Started Tasks</span><span>-</span>
+      </h3>
+      <div>
+      <% @started_tasks.each do |task| %>
+        <div class="task-list-item">
+            <div>
+              <h4><%= link_to task.title, show_task_path(task.id), method: :get %></h4>
+              <p><strong><%= task.category.name %></p></strong>
+            </div>
+            <p>
+                <%= task.description %>
+            </p>
+            <div>
+              <div>
+                <p><strong>Deadline:</strong> <%= task.deadline.nil? ? "Not set" : task.deadline %></p>
+                <p><strong>Started at:</strong>  <%= task.started_at.nil? ? "Not set" : task.started_at %></p>                  
+              </div>
+              <div>
+                <%= link_to 'View', show_task_path(task.id), method: :get, class: 'button' %>
+                <%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %>  
+              </div>     
+            </div>  
+            <hr>              
+        </div>
+      <% end %>
+      </div>
+    <% end %> 
+    <% if @pending_tasks.any? %>
+      <h3 class="tasks-header">
+        <span>Pending Tasks</span><span>-</span>
+      </h3>
+      <div>
+        <% @pending_tasks.each do |task| %>
+          <div class="task-list-item">
+              <div>
+                <h4><%= link_to task.title, show_task_path(task.id), method: :get %></h4>
+                <p><strong><%= task.category.name %></p></strong>
+              </div>
+              <p>
+                  <%= task.description %>
+              </p>
+              <div>
+                <div>
+                  <p><strong>Deadline:</strong> <%= task.deadline.nil? ? "Not set" : task.deadline %></p>                
+                </div>
+                <div>
+                  <%= link_to 'View', show_task_path(task.id), method: :get, class: 'button' %>
+                  <%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %>  
+                </div>  
+              </div>
+              <hr>              
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @completed_tasks.any? %>
+      <h3 class="tasks-header">
+        <span>Completed Tasks</span><span>-</span>
+      </h3>
+      <div>
+            <% @completed_tasks.each do |task| %>
+        <div class="task-list-item">
+          <div>
+            <h4><%= link_to task.title, show_task_path(task.id), method: :get %></h4>
+            <p><strong><%= task.category.name %></p></strong>
+          </div>
+          <p>
+              <%= task.description %>
+          </p>
+          <div>
+            <div>
+              <p><strong>Deadline:</strong> <%= task.deadline.nil? ? "Not set" : task.deadline %></p>
+              <p><strong>Completed at:</strong>  <%= task.completed_at.nil? ? "Not set" : task.completed_at %></p>                  
+            </div>
+            <div>
+              <%= link_to 'View', show_task_path(task.id), method: :get, class: 'button' %>
+              <%= link_to 'Edit', edit_task_path(task.id), method: :get, class: 'button' %>  
+            </div>     
+          </div>  
+          <hr>              
+        </div>
+      <% end %>
+      </div>
+
+    <% end %>
 </div>
+
+
+
+
+
+
 
 
 

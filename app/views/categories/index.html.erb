@@ -1,17 +1,16 @@
-<div class="section">
-    <div class="categories-list">
-        <div>
-            <%= link_to '+ New Category', new_category_path, method: :get, class: 'button'%>
-        </div>
-
-        <% @categories.each do |category| %>
-            <div class="list-category-item">
-                <span><%= link_to category.name, show_category_path(category.id)%></span>
-                <span><%= category.description %></span>
-                <span><%= link_to 'Edit', edit_category_path(category.id), method: :get, class: 'button' %></span>
-            </div>
-        <% end %>
+<h2>Categories</h2>
+<div class="list">
+    <div>
+        <%= link_to '+ New Category', new_category_path, method: :get, class: 'button'%>
     </div>
+
+    <% @categories.each do |category| %>
+        <div class="list-category-item">
+            <span><%= link_to category.name, show_category_path(category.id)%></span>
+            <span><%= category.description %></span>
+            <span><%= link_to 'Edit', edit_category_path(category.id), method: :get, class: 'button' %></span>
+        </div>
+    <% end %>
 </div>
 
 
