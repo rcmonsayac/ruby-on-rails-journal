@@ -6,7 +6,7 @@
     </div>
     <% if @started_tasks.any? %>
       <h3 class="tasks-header">
-        <span>Started Tasks</span><span>-</span>
+        <span>Started Tasks(<%= @started_tasks.count %>)</span><span>-</span>
       </h3>
       <div>
       <% @started_tasks.each do |task| %>
@@ -35,7 +35,7 @@
     <% end %> 
     <% if @pending_tasks.any? %>
       <h3 class="tasks-header">
-        <span>Pending Tasks</span><span>-</span>
+        <span>Pending Tasks(<%= @pending_tasks.count %>)</span><span>-</span>
       </h3>
       <div>
         <% @pending_tasks.each do |task| %>
@@ -63,7 +63,7 @@
     <% end %>
     <% if @completed_tasks.any? %>
       <h3 class="tasks-header">
-        <span>Completed Tasks</span><span>-</span>
+        <span>Completed Tasks(<%= @completed_tasks.count %>)</span><span>-</span>
       </h3>
       <div>
             <% @completed_tasks.each do |task| %>

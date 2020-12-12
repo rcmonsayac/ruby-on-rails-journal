@@ -2,27 +2,23 @@
 <%= form_with scope: :category, url: update_category_path, local: true, method: :put do |f|  %>
     <div class="validations">
         <% if @category.errors.any?  %>
-                <% @category.errors.full_messages.each do |message| %>
-                    <div>
-                        <%= message %>
-                    </div>
-                <% end %>
+          <%= @category.errors.full_messages[0] %>
         <% end %>     
     </div>
     <%= f.hidden_field :id %>
-    <div class="form-group">
+    <div class="field">
         <%= f.label :name, class: 'form-label' %>
         <%= f.text_field :name, class: 'text-input' %>
     </div>
-    <div class="form-group">
+    <div class="textarea-field">
         <%= f.label :description, class: 'form-label' %>
-        <%= f.text_field :description, class: 'text-area' %>
+        <%= f.text_area :description, class: 'text-area' %>
     </div>
 
-    <div class="form-group">
+    <div class="actions">
         <%= f.submit 'Save', class: 'button' %>
         <%=  link_to 'Delete', delete_category_path(@category.id), method: :delete, class: 'button', data: {confirm: "Are you sure you want to delete this category?"} %>
-        <%=  link_to 'Cancel', categories_path, method: :get, class: 'button' %>
+        <%=  link_to 'Back to Categories', categories_path, method: :get, class: 'button' %>
     </div>
 <% end %>
 

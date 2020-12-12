@@ -3,7 +3,11 @@
     <div>
         <%= link_to '+ New Category', new_category_path, method: :get, class: 'button'%>
     </div>
-
+    <div class="list-category-item">
+        <span><strong>Category Name</strong> </span>
+        <span><strong>Description</strong> </span>
+        <span></span>
+    </div>
     <% @categories.each do |category| %>
         <div class="list-category-item">
             <span><%= link_to category.name, show_category_path(category.id)%></span>

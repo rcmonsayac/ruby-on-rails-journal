@@ -1,24 +1,21 @@
 <h2>
-  <%= @task.title %> (<%= link_to @task.category.name, show_category_path(@task.category_id) %>)
+  Tasks > <%= @task.title %>
 </h2>
-<p>
-  <%= @task.description %>
-</p>
-<% if @task.deadline %>
-    <p>
-    Deadline: <%= @task.deadline %>
-    </p>
-<% end %>
-<% if @task.started %>
-    <p>
-    Task started at <%= @task.started_at %>
-    </p>
-<% end %>
-<% if @task.completed %>
-    <p>
-    Task completed at <%= @task.completed_at %>
-    </p>
-<% end %>
+<div>
+  <strong><%= label(:task, :description) %></strong>
+  <div>
+    <%= @task.description %>
+  </div>
+</div>
+<div>
+  <strong><%= label(:task, :deadline) %>: </strong> <%= @task.deadline.nil? ? "Not set" : @task.deadline %>
+</div>
+<div>
+  <strong><%= label(:task, :started) %>: </strong> <%= @task.started ? @task.started_at.nil? ? "Yes, date not set" : @task.started_at : "No" %>
+</div>
+<div>
+  <strong><%= label(:task, :completed) %>: </strong> <%= @task.completed ? @task.completed_at.nil? ? "Yes, date not set" : @task.started_at : "No" %>
+</div>
 
-<%= link_to "Edit", edit_task_path(@task.id) %>
-<%= link_to "Back to Tasks", today_task_path %>
+<%= link_to "Edit", edit_task_path(@task.id), class: 'button' %>
+<%= link_to "Back to Tasks", today_task_path, class: 'button' %>

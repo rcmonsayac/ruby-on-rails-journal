@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   put '/tasks/update' => 'tasks#update', as: 'update_task'
   delete '/tasks/delete/:id' => 'tasks#delete', as: 'delete_task'
 
+  get '/profile' => 'profile#index', as: 'profile'
+
   # resources :categories do
   #   resources :tasks
   # end

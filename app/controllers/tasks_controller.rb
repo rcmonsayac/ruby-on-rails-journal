@@ -24,7 +24,7 @@ class TasksController < ApplicationController
         @task = Task.new(task_params)
         @task.user_id = current_user.id
         if @task.save
-            redirect_to tasks_path
+            redirect_to show_task_path(@task.id)
         else
             render :new
         end
@@ -37,18 +37,18 @@ class TasksController < ApplicationController
     def update
         @task = Task.find_by(id: params[:task][:id])  
         if @task.update(task_params)
-            redirect_to tasks_path
+          redirect_to show_task_path(@task.id)
         else
-            render :edit
+          render :edit
         end
     end
 
     def delete
         @task = Task.find(params[:id])  
         if @task.destroy
-            redirect_to tasks_path
+          redirect_to tasks_path
         else
-            render :edit
+          render :edit
         end
     end
 

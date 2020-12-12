@@ -33,6 +33,13 @@
                 <% end %>
                   <%= link_to 'Categories', categories_path %>
                 </li>
+                <% if params[:controller] == 'profile' %>
+                  <li class="active">
+                <% else %>
+                  <li>
+                <% end %>
+                  <%= link_to 'Profile', profile_path %>
+                </li>
               </ul>
               <ul>
               </ul>

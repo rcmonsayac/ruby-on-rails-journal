@@ -1,0 +1,17 @@
+<h2>Profile</h2>
+
+<div>
+  <strong><%= label(:user, :email) %></strong>
+  <div>
+    <%= @user.email %>
+  </div>
+</div>
+<div>
+  <strong>Account created at: </strong><%= @user.created_at %>
+</div>
+<div>
+  <strong>Profile last updated at: </strong><%= @user.updated_at %>
+</div>
+
+
+<%= link_to "Change Password", edit_user_registration_path, class: 'button' %>

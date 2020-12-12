@@ -1,33 +1,28 @@
 <%= form_with scope: :task, url: create_task_path, local: true do |f| %>
-  <p>
-    <% if @task.errors.any? %>
-      <ul>
-        <% @task.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>     
-  </p>
-  <p>
+  <div class="validations">
+    <ul>
+        <li><%=  @task.errors.full_messages[0] %></li>
+    </ul>
+  </div>
+  <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
-  </p>
-  <p>
+  </div>
+  <div class="field">
+    <%= f.label :category_id, "Category" %>
+    <%= f.select :category_id, Category.all.collect { |c| [ c.name, c.id ] } %>
+  </div>
+  <div class="textarea-field">
     <%= f.label :description %>
     <%= f.text_area :description %>
-  </p>
-  <p>
+  </div>
+  <div class="datefield">
     <%= f.label :deadline %>
     <%= f.datetime_field :deadline %>
-  </p>
-  <p>
-    <%= f.label :category_id, "Category" %>
-    <%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %>
-  </p>
-  <p>
+  </div>
+
+  <div class="actions">
     <%= f.submit 'Create', class: 'button' %>
-    <%=  link_to 'Cancel', tasks_path, method: :get, class: 'button' %>
-  </p>
+    <%=  link_to 'Back to Tasks', today_task_path, method: :get, class: 'button' %>
+  </div>
   <% end %>

@@ -25,9 +25,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create new task" do 
-    post create_task_path, params: { task: { title: "create title", category_id: @category.id, deadline: Time.new(2020, 12, 31) } }
-    assert_redirected_to tasks_path
-    assert Task.find_by(title: "create title")
+    post create_task_path, params: { task: { title: "create title test", category_id: @category.id, deadline: Time.new(2020, 12, 31) } }
+    assert_response :redirect
+    assert Task.find_by(title: "create title test")
   end
 
   test "should get edit task" do
@@ -38,7 +38,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "should start task" do
     started_date = Time.now
     put update_task_path, params: { task: { id: @task.id,  started: true, started_at: started_date } }
-    assert_redirected_to tasks_path
+    assert_redirected_to show_task_path(@task.id)
 
     started_task = Task.find(@task.id)
     # assert_equal(completed_date,  completed_task.completed_at)
@@ -57,7 +57,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     completed_date = Time.now
     put update_task_path, params: { task: { id: started_task.id, completed: true, completed_at: completed_date } }
-    assert_redirected_to tasks_path
+    assert_redirected_to show_task_path(started_task.id)
 
     completed_task = Task.find(started_task.id)
     # assert_equal(completed_date,  completed_task.completed_at)
